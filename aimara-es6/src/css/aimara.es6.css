@@ -1,0 +1,135 @@
+ul.tree * {
+    transition: all .2s linear;
+}
+ul.tree,
+ul.tree ul {
+    list-style: none;
+    position: relative;
+}
+ul.tree li {
+    position: relative;
+    margin-bottom: .7rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+ul.tree li > span {
+    border-radius: .1rem;
+    padding: .3rem .6rem;
+}
+ul.tree li.selected > span,
+ul.tree li.hover > span:hover {
+    cursor: pointer;
+    background-color: green;
+}
+ul.tree li > ul {
+    display: none;
+    margin-top: .6rem;
+}
+ul.tree li.on > ul {
+    display: block;
+}
+
+ul.tree li > i {
+    margin-right: .5rem;
+    z-index: 1;
+}
+
+ul.tree li > span > i {
+    margin-right: .25rem;
+}
+ul.tree li:before {
+    content: '';
+    display: inline-block;
+    width: 2.5rem;
+    height: 1.7rem;
+    border-right: unset;
+    border-top: unset;
+    border-left: 1px dashed lightgray;
+    border-bottom: 1px dashed lightgray;
+    position: absolute;
+    left: -2rem;
+    top: -1.2rem;
+    z-index: -1;
+}
+ul.tree > li:first-child:before {
+    border-left: 1px dashed lightgray;
+    border-bottom: 1px dashed lightgray;
+    height: 1rem;
+    top: -.5rem;
+}
+ul.tree li:not(:last-child) > ul:before {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: calc(100% + .7rem);
+    border-right: unset;
+    border-top: unset;
+    border-left: 1px dashed lightgray;
+    border-bottom: 1px dashed lightgray;
+    position: absolute;
+    left: -2rem;
+    top: -1.15rem;
+    z-index: -1;
+}
+ul.tree li:last-child:before {
+    border-bottom-left-radius: 5px;
+    z-index: -1;
+}
+
+ul.context-menu,
+ul.context-menu ul {
+    list-style: none;
+}
+ul.context-menu {
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    display: block;
+    max-width: 0;
+    max-height: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    z-index: 10;
+
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 2px;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.75);
+    background-color: white;
+}
+ul.context-menu.active {
+    max-width: 50vw;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+ul.context-menu li span {
+    padding: .5rem .7rem;
+    display: block;
+    cursor: pointer;
+}
+ul.context-menu li > ul > li > span {
+    padding: 5px;
+}
+ul.context-menu li span i:first-child {
+    margin-right: .5rem;
+}
+ul.context-menu i.chevron {
+    float: right;
+    transition: all .4s linear;
+}
+ul.context-menu li > ul {
+    max-height: 0;
+    overflow: hidden;
+    transition: all .4s ease-in;
+}
+ul.context-menu li:hover > ul {
+    max-height: 50vh;
+    transition: all .4s ease-out;
+}
+ul.context-menu li:hover > span > i.chevron {
+    transform: rotate(90deg);
+    transition: all .4s linear;
+}
+
+ul.context-menu li:hover > span {
+    background-color: lightgrey;
+}
