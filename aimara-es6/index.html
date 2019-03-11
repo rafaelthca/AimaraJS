@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aimara</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="src/css/aimara.es6.css">
+</head>
+<body>
+    <div id="target-div"></div>
+    <script type="text/javascript" src="src/js/aimara.es6.js"></script>
+    <script type="text/javascript" src="src/js/aimara.es6.model.js"></script>
+    <script type="text/javascript" src="src/js/aimara.es6.view.js"></script>
+    <script type="text/javascript" src="src/js/aimara.es6.controller.js"></script>
+
+    <script type="text/javascript" src="src/js/aimara.node.es6.js"></script>
+    <script type="text/javascript" src="src/js/aimara.node.model.es6.js"></script>
+    <script type="text/javascript" src="src/js/aimara.node.view.es6.js"></script>
+    <script type="text/javascript" src="src/js/aimara.node.controller.es6.js"></script>
+
+
+    <script type="text/javascript">
+        let tree = new Aimara('target-div', null);
+
+        for (var i=1; i<10; i++) {
+            node1 = tree.createNode({icon: '', label: `Level 1: ${String(i).padStart(2, '0')}`});
+            for (var j=1; j<5; j++) {
+                node2 = tree.createChildNode(node1, {icon: '', label: `Level 2: ${String(j).padStart(2, '0')}`, contextMenu: {
+                        itemName: {
+                            icon: 'fa-wrench',
+                            label: 'Menu de contexto 01',
+                            action: ()=>{ console.log('MENU 1'); },
+                            submenus: {
+                                itemName: {
+                                    icon: 'fa-wrench',
+                                    label: 'Menu de contexto 01 - 01',
+                                    action: ()=>{ console.log('MENU 1 - S01'); },
+                                    submenus: null
+                                },
+                                itemName2: {
+                                    icon: 'fa-wrench',
+                                    label: 'Menu de contexto 01 - 02',
+                                    action: ()=>{ console.log('MENU 1 - S02'); },
+                                    submenus: null
+                                }
+                            }
+                        },
+                        itemName2: {
+                            icon: 'fa-wrench',
+                            label: 'Menu de contexto 02',
+                            action: ()=>{ console.log('MENU 2'); },
+                            submenus: null
+                        }
+                    }});
+                for (var k=1; k<5; k++) {
+                    node3 = tree.createChildNode(node2, {icon: 'fa-wrench', label: `Level 3: ${String(i).padStart(2, '0')}`});
+                }
+            }
+        }
+    </script>
+</body>
+</html>
